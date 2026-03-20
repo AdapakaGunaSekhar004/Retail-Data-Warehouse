@@ -4,6 +4,12 @@ An end-to-end ELT data warehouse pipeline built with PostgreSQL, dbt, Apache Air
 
 ---
 
+## Business Problem
+
+Retail sales data is often stored in raw formats that are not suitable for analysis. This project builds a data warehouse to transform raw transactional data into structured analytical models, enabling analysis of sales trends, product performance, and business KPIs.
+
+---
+
 ## Key Highlights
 
 - Automated daily pipeline with Apache Airflow (3-task DAG: ingest → transform → test)
@@ -11,6 +17,14 @@ An end-to-end ELT data warehouse pipeline built with PostgreSQL, dbt, Apache Air
 - 3 dbt models: staging, fact, and dimension layers
 - Business KPIs visualized across 3 Metabase dashboards
 - Fully containerized with Docker
+
+---
+
+## Key Insights
+
+- Identified monthly sales trends and seasonality patterns across Jan 2024 – Jan 2025
+- Analyzed product-level performance using fact and dimension models
+- Tracked transaction distribution and average quantity trends over time
 
 ---
 
@@ -38,14 +52,14 @@ Metabase (BI Dashboard)
 
 ## Tech Stack
 
-| Tool           | Version | Purpose                    |
-|----------------|---------|----------------------------|
-| PostgreSQL     | 15      | Data storage and staging   |
-| dbt-core       | 1.8.7   | Data transformation        |
-| dbt-postgres   | 1.8.2   | dbt PostgreSQL adapter     |
-| Apache Airflow | 2.9.3   | Pipeline orchestration     |
-| Metabase       | v0.59.2.5 | BI dashboards            |
-| Docker         | 29.2.1  | Container runtime          |
+| Tool           | Version   | Purpose                    |
+|----------------|-----------|----------------------------|
+| PostgreSQL     | 15        | Data storage and staging   |
+| dbt-core       | 1.8.7     | Data transformation        |
+| dbt-postgres   | 1.8.2     | dbt PostgreSQL adapter     |
+| Apache Airflow | 2.9.3     | Pipeline orchestration     |
+| Metabase       | v0.59.2.5 | BI dashboards              |
+| Docker         | 29.2.1    | Container runtime          |
 
 ---
 
@@ -63,6 +77,9 @@ Retail-Data-Warehouse/
 │   └── schema.yml
 ├── data/
 │   └── raw_sales.csv
+├── screenshots/
+│   ├── airflow_dag.png
+│   └── metabase_dashboard.png
 ├── docker-compose.yml
 └── README.md
 ```
@@ -108,12 +125,15 @@ cd retail_dw
 dbt debug
 ```
 
-### 5. Run the Pipeline
+---
 
-```bash
-dbt run
-dbt test
-```
+## Pipeline Execution
+
+The pipeline is triggered via Airflow DAG:
+
+1. **Ingest** — load raw sales data into PostgreSQL (`load_raw_sales`)
+2. **Transform** — run dbt models for staging, fact, and dimension layers (`dbt_run`)
+3. **Validate** — execute dbt data quality tests (`dbt_test`)
 
 ---
 
@@ -137,6 +157,18 @@ Three dashboards built on top of the warehouse models:
 | Raw Sales  | Total transaction count (200 records)             |
 | Stg Sales  | Average quantity per month, sales trend over time |
 | Fct Sales  | Transaction distribution, monthly quantity trends |
+
+---
+
+## Screenshots
+
+### Airflow DAG — All Tasks Successful
+
+![Airflow DAG](screenshots/airflow_dag.png)
+
+### Metabase Dashboard — Sales KPIs
+
+![Metabase Dashboard](screenshots/metabase_dashboard.png)
 
 ---
 
