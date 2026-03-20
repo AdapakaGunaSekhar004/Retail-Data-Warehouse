@@ -13,7 +13,7 @@ Retail sales data is often stored in raw formats that are not suitable for analy
 ## Key Highlights
 
 - Automated daily pipeline with Apache Airflow (3-task DAG: ingest → transform → test)
-- 8/8 dbt data quality tests passing (unique, not_null constraints)
+- 7/7 dbt data quality tests passing (not_null constraints)
 - 3 dbt transformation models and data quality tests: staging, fact, and dimension layers
 - Business KPIs visualized across 3 Metabase dashboards
 - Fully containerized with Docker
@@ -22,7 +22,7 @@ Retail sales data is often stored in raw formats that are not suitable for analy
 
 ## Key Insights
 
-- Identified monthly sales trends and seasonality patterns across Jan 2024 – Jan 2025
+- Identified monthly sales trends and seasonality patterns across Jan 2011 – Dec 2011
 - Analyzed product-level performance using fact and dimension models
 - Tracked transaction distribution and average quantity trends over time
 
@@ -154,7 +154,7 @@ Three dashboards built on top of the warehouse models:
 
 | Dashboard  | Metrics                                           |
 |------------|---------------------------------------------------|
-| Raw Sales  | Total transaction count (200 records)             |
+| Raw Sales  | Total transaction count (49,005 records)             |
 | Stg Sales  | Average quantity per month, sales trend over time |
 | Fct Sales  | Transaction distribution, monthly quantity trends |
 
