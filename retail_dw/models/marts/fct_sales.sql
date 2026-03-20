@@ -1,16 +1,14 @@
 with stg_sales as (
     select * from {{ ref('stg_sales') }}
 )
-
 select
     order_id,
     order_date,
+    order_time,
     customer_id,
-    customer_name,
     product_id,
     product_name,
-    category,
-    region,
+    country,
     quantity,
     unit_price,
     total_amount

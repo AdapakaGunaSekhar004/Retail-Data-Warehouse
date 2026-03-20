@@ -1,21 +1,20 @@
 with source as (
     select * from raw_sales
 ),
-
 renamed as (
     select
-        order_id,
-        order_date::date          as order_date,
-        customer_id,
-        customer_name,
-        product_id,
-        product_name,
-        category,
-        quantity::integer         as quantity,
-        unit_price::numeric(10,2) as unit_price,
-        region,
-        (quantity::integer * unit_price::numeric(10,2)) as total_amount
+        invoiceno                       as order_id,
+        invoicedate::date               as order_date,
+        invoicetime                     as order_time,
+        stockcode                       as product_id,
+        description                     as product_name,
+        quantity::integer               as quantity,
+        unitprice::numeric(10,2)        as unit_price,
+        totalsale::numeric(10,2)        as total_amount,
+        customerid                      as customer_id,
+        country,
+        isreturn::boolean               as is_return
     from source
+    where isreturn = 'False'
 )
-
 select * from renamed

@@ -1,13 +1,11 @@
 version: 2
-
 models:
   - name: stg_sales
     description: Cleaned and renamed raw sales records
     columns:
       - name: order_id
-        description: Unique order identifier
+        description: Invoice number
         data_tests:
-          - unique
           - not_null
       - name: order_date
         data_tests:
