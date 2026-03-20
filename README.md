@@ -1,6 +1,6 @@
 # Retail Data Warehouse
 
-An end-to-end ELT data warehouse pipeline built with PostgreSQL, dbt, Apache Airflow, and Metabase. The pipeline ingests raw retail sales data, loads it into PostgreSQL, transforms it into analytical models using dbt, and visualizes business KPIs through a BI dashboard.
+An end-to-end ELT data warehouse pipeline built with PostgreSQL, dbt, Apache Airflow, and Metabase. The pipeline ingests raw retail sales data, loads it into PostgreSQL, transforms it using dbt transformation models and data quality tests, and visualizes business KPIs through a BI dashboard.
 
 ---
 
@@ -14,7 +14,7 @@ Retail sales data is often stored in raw formats that are not suitable for analy
 
 - Automated daily pipeline with Apache Airflow (3-task DAG: ingest → transform → test)
 - 8/8 dbt data quality tests passing (unique, not_null constraints)
-- 3 dbt models: staging, fact, and dimension layers
+- 3 dbt transformation models and data quality tests: staging, fact, and dimension layers
 - Business KPIs visualized across 3 Metabase dashboards
 - Fully containerized with Docker
 
