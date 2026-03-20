@@ -2,6 +2,8 @@
 
 An end-to-end ELT data warehouse pipeline built with PostgreSQL, dbt, Apache Airflow, and Metabase. The pipeline ingests raw retail sales data, loads it into PostgreSQL, transforms it using dbt transformation models and data quality tests, and visualizes business KPIs through a BI dashboard.
 
+> Built an automated ELT pipeline to transform raw retail data into validated, analytics-ready models for business reporting.
+
 ---
 
 ## Business Problem
@@ -13,18 +15,29 @@ Retail sales data is often stored in raw formats that are not suitable for analy
 ## Key Highlights
 
 - Automated daily pipeline with Apache Airflow (3-task DAG: ingest → transform → test)
-- 7/7 dbt data quality tests passing (not_null constraints)
-- 3 dbt transformation models and data quality tests: staging, fact, and dimension layers
+- Processed and transformed 49,005 records into analytics-ready models for business reporting
+- Implemented 7 dbt data quality tests (not_null, data validation checks) ensuring data integrity
+- Built 3 dbt models across staging, fact, and dimension layers following data warehouse best practices
+- Designed structured fact and dimension models to optimize analytical query performance
 - Business KPIs visualized across 3 Metabase dashboards
 - Fully containerized with Docker
 
 ---
 
+## Dataset
+
+- Processed 49,005 retail transaction records (filtered from 50,000 raw records)
+- Includes fields: InvoiceNo, InvoiceDate, StockCode, Quantity, UnitPrice, CustomerID, Country
+- Covers transactional sales data across multiple countries used for building analytical models
+
+---
+
 ## Key Insights
 
-- Identified monthly sales trends and seasonality patterns across Jan 2011 – Dec 2011
-- Analyzed product-level performance using fact and dimension models
-- Tracked transaction distribution and average quantity trends over time
+- Identified peak sales periods and seasonal demand fluctuations across the year
+- Determined top-performing products contributing highest revenue
+- Analyzed transaction distribution and average order quantity trends
+- Enabled reliable reporting through validated data models
 
 ---
 
@@ -154,7 +167,7 @@ Three dashboards built on top of the warehouse models:
 
 | Dashboard  | Metrics                                           |
 |------------|---------------------------------------------------|
-| Raw Sales  | Total transaction count (49,005 records)             |
+| Raw Sales  | Total transaction count (49,005 records)          |
 | Stg Sales  | Average quantity per month, sales trend over time |
 | Fct Sales  | Transaction distribution, monthly quantity trends |
 
